@@ -1,0 +1,4 @@
+# Docker Image java-python-r
+Java/maven, R, and Python in one handy container, based on the official Maven docker image (https://hub.docker.com/_/maven/), and Gergely Daroczi's gist (https://gist.github.com/daroczig/9c6b2f0d1020f84f60a0).
+One way this is used is to execute Java programs using Maven, and analyse/visualize the results with R. This is often executed in an AWS environment (as the CodeBuild container), so the AWS CLI comes pre-installed.
+This isn't necessarily efficient or lightweight, and is not really optimized for anything else than convenience, but it contains everything I find I need for a certain type of workloads (mostly, training model, but more generally batch processing).
