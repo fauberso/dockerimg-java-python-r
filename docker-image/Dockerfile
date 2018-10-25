@@ -17,8 +17,8 @@ RUN useradd docker \
 
 ## Install packages needed by various parts
 RUN apt-get update && apt-get install -y \
-  ed less gnupg2 locales vim-tiny curl wget python-pip python-igraph \
-  libxml2-dev libxml2-utils ca-certificates fonts-texgyre sysstat
+  ed less gnupg2 locales vim-tiny curl wget python3-pip \
+  libxml2-dev libxml2-utils ca-certificates fonts-texgyre sysstat cmake
 
 ## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
@@ -45,8 +45,12 @@ RUN apt-get update \
 	&& rm -rf /tmp/downloaded_packages/ /tmp/*.rds \
 	&& rm -rf /var/lib/apt/lists/*
 
+## Install PIP3
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+RUN python3 get-pip.py
+
 ## Install the AWS CLI tools
-RUN pip install awscli --upgrade --user
+RUN pip3 install awscli --upgrade --user
 
 ## Install Java
 RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" \
